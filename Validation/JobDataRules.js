@@ -2,37 +2,37 @@ const { check } = require("express-validator");
 const { JOB_TYPE, JOB_STATUS } = require("../Utils/JobConstants");
 
 exports.checkJobInput = [
-    check("company").trim().notEmpty().withMessage("Job must have a Company"),
-    check("position").trim().notEmpty().withMessage("Job must have a Position"),
+    check("company").trim().notEmpty().withMessage("Internship must have a Company"),
+    check("position").trim().notEmpty().withMessage("Internship must have a Position"),
     check("jobLocation")
         .trim()
         .notEmpty()
-        .withMessage("Job location is required"),
+        .withMessage("Internship location is required"),
     check("jobStatus")
         .isIn(Object.values(JOB_STATUS))
-        .withMessage("Invalid job status"),
+        .withMessage("Invalid Internship status"),
     check("jobType")
         .isIn(Object.values(JOB_TYPE))
-        .withMessage("Invalid job type"),
+        .withMessage("Invalid Internship type"),
     check("jobVacancy")
         .trim()
         .notEmpty()
-        .withMessage("Job Vacancy is requried"),
-    check("jobSalary").trim().notEmpty().withMessage("Job Salary is requried"),
+        .withMessage("Internship Vacancy is required"),
+    check("jobSalary").trim().notEmpty().withMessage("Internship Salary is required"),
     check("jobDeadline")
         .trim()
         .notEmpty()
-        .withMessage("Job Deadline is requried"),
+        .withMessage("Internship Deadline is required"),
     check("jobDescription")
         .trim()
         .notEmpty()
-        .withMessage("Job Description is requried"),
-    check("jobSkills").isArray({ min: 1 }).withMessage("Job Skills is requrie"),
+        .withMessage("Internship Description is required"),
+    check("jobSkills").isArray({ min: 1 }).withMessage("Internship Skills is required"),
     check("jobFacilities")
         .isArray({ min: 1 })
-        .withMessage("Job Facilities is requrie"),
+        .withMessage("Internship Facilities is required"),
     check("jobContact")
         .trim()
         .notEmpty()
-        .withMessage("Job contact is requried"),
+        .withMessage("Internship contact is required"),
 ];

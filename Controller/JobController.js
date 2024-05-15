@@ -83,7 +83,7 @@ module.exports.getAllJobs = async (req, res, next) => {
                 pageCount,
             });
         } else {
-            next(createError(500, "Job List is empty"));
+            next(createError(500, "Internship List is empty"));
         }
     } catch (error) {
         next(createError(500, error.message));
@@ -104,7 +104,7 @@ module.exports.getMyJobs = async (req, res, next) => {
             });
         } else {
             res.status(400).json({
-                message: "Job not found",
+                message: "Internship not found",
             });
         }
     } catch (error) {
@@ -154,7 +154,7 @@ module.exports.getSingleJob = async (req, res, next) => {
     const { id } = req.params;
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            next(createError(400, "Invalid Job ID format"));
+            next(createError(400, "Invalid Internship ID format"));
         }
         const result = await JobModel.findById(id);
         if (!result) {
@@ -177,7 +177,7 @@ module.exports.addJob = async (req, res, next) => {
             company: jobData.comapny,
         });
         if (isJobExists) {
-            next(createError(500, "Job data already exist"));
+            next(createError(500, "Internship data already exist"));
         } else {
             console.log(req?.user);
             jobData.createdBy = req?.user?._id;
@@ -199,19 +199,19 @@ module.exports.updateSingleJob = async (req, res, next) => {
     const data = req.body;
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            next(createError(400, "Invalid Job ID format"));
+            next(createError(400, "Invalid Internship ID format"));
         }
 
         const isJobExists = await JobModel.findOne({ _id: id });
         if (!isJobExists) {
-            next(createError(500, "Job not found"));
+            next(createError(500, "Internship not found"));
         } else {
             const updatedJob = await JobModel.findByIdAndUpdate(id, data, {
                 new: true,
             });
             res.status(200).json({
                 status: true,
-                message: "Job Updated",
+                message: "Internship Updated",
                 result: updatedJob,
             });
         }
@@ -224,14 +224,14 @@ module.exports.deleteSingleJob = async (req, res, next) => {
     const { id } = req.params;
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            next(createError(400, "Invalid Job ID format"));
+            next(createError(400, "Invalid Internship ID format"));
         }
 
         const isJobExists = await JobModel.findOne({ _id: id });
         if (!isJobExists) {
             res.status(500).json({
                 status: false,
-                message: "Job not found",
+                message: "Internship not found",
             });
         } else {
             // Find and delete associated applications
@@ -241,7 +241,7 @@ module.exports.deleteSingleJob = async (req, res, next) => {
 
             res.status(200).json({
                 status: true,
-                message: "Job Deleted",
+                message: "Internship Deleted",
                 result,
             });
         }
