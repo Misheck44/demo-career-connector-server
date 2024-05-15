@@ -192,7 +192,7 @@ exports.deleteAllUser = async (req, res, next) => {
         result = await UserModel.deleteMany({});
         res.status(201).json({
             status: true,
-            message: "All users deleted",
+            message: "All user deleted",
         });
     } catch (error) {
         next(createError(500, `something wrong: ${error.message}`));
