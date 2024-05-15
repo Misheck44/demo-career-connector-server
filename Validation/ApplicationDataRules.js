@@ -24,15 +24,15 @@ exports.checkInput = [
     check("jobId")
         .trim()
         .notEmpty()
-        .withMessage("Application must have an Job ID")
+        .withMessage("Application must have an Internship  ID")
         .custom(async (jobId, { req }) => {
             if (!mongoose.Types.ObjectId.isValid(jobId)) {
-                throw new Error("Invalid Job ID");
+                throw new Error("Invalid Internship  ID");
             }
         }),
     check("status")
         .isIn(Object.values(STATUS))
-        .withMessage("Invalid job status"),
+        .withMessage("Invalid Internship status"),
     check("dateOfApplication")
         .notEmpty()
         .withMessage("Application Date is required")
@@ -40,7 +40,7 @@ exports.checkInput = [
         .withMessage("Invalid date format. Please provide a valid date."),
     check("resume")
         .notEmpty()
-        .withMessage("Applicant's Resume is required")
+        .withMessage("Applicant's CV is required")
         .isURL()
         .withMessage("Invalid URL. Please provide a valid URL."),
 ];

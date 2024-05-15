@@ -63,7 +63,7 @@ module.exports.getCandidateAppliedJobs = async (req, res, next) => {
                 pageCount: pageCount || 1,
             });
         } else {
-            next(createError(500, "Job List is empty"));
+            next(createError(500, "Internship List is empty"));
         }
     } catch (error) {
         next(createError(500, error.message));
@@ -164,7 +164,7 @@ module.exports.updateJobStatus = async (req, res, next) => {
 
             const isJobExists = await ApplicationModel.findOne({ _id: id });
             if (!isJobExists) {
-                next(createError(500, "Job not found"));
+                next(createError(500, "Internship  not found"));
             } else {
                 const updatedJob = await ApplicationModel.findByIdAndUpdate(
                     id,
@@ -175,12 +175,12 @@ module.exports.updateJobStatus = async (req, res, next) => {
                 );
                 res.status(200).json({
                     status: true,
-                    message: "Job Updated",
+                    message: "Internship  Updated",
                     result: updatedJob,
                 });
             }
         } else {
-            next(createError(400, "Unauthorized user to update job"));
+            next(createError(400, "Unauthorized user to update Internship"));
         }
     } catch (error) {
         next(createError(500, `something wrong: ${error.message}`));
